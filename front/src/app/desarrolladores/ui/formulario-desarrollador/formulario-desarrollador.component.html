@@ -1,0 +1,54 @@
+<form [formGroup]="form" class="flex flex-col bg-gray-100 rounded-md p-8 gap-8" (ngSubmit)="onSubmit()">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input matInput [formControlName]="formKeys.nombre" />
+      @if (nombre.invalid && (nombre.dirty || nombre.touched) && nombre.errors?.["required"]) {
+        <mat-error>El campo es requerido.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Correo electrónico</mat-label>
+      <input matInput [formControlName]="formKeys.correo" />
+      @if (correo.invalid && (correo.dirty || correo.touched) && correo.errors?.["required"]) {
+        <mat-error>El campo es requerido.</mat-error>
+      }
+
+      @if (correo.invalid && (correo.dirty || correo.touched) && correo.errors?.["email"]) {
+        <mat-error>El campo debe ser un email.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Rol</mat-label>
+      <mat-select [formControlName]="formKeys.rol">
+        @for (rol of roles; track rol.id) {
+          <mat-option [value]="rol.id">{{ rol.nombre }}</mat-option>
+        }
+      </mat-select>
+      @if (rol.invalid && (rol.dirty || rol.touched) && rol.errors?.["required"]) {
+        <mat-error>El campo es requerido.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Fecha contratación</mat-label>
+      <input matInput [matDatepicker]="picker" [formControlName]="formKeys.fechaContratacion" />
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      @if (
+        fechaContratacion.invalid &&
+        (fechaContratacion.dirty || fechaContratacion.touched) &&
+        fechaContratacion.errors?.["required"]
+      ) {
+        <mat-error>El campo es requerido.</mat-error>
+      }
+    </mat-form-field>
+  </div>
+
+  <div class="flex flex-col sm:flex-row sm:justify-end gap-2">
+    <button type="reset" mat-button>Limpiar</button>
+    <button type="submit" mat-flat-button>{{ esRegistro ? "Registrar" : "Guardar" }}</button>
+  </div>
+</form>

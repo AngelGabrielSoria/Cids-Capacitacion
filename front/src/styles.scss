@@ -1,0 +1,44 @@
+@use "@angular/material" as mat;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --white: #f8f9fa;
+  --black: #343a40;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// Material-Tailwind fix
+.mdc-notched-outline__notch {
+  border-style: none;
+}
+
+// Material-Tailwind fix
+.mat-mdc-icon-button {
+  line-height: normal;
+}
+
+.notificacion-exito {
+  --mdc-snackbar-container-color: var(--success);
+  --mat-snack-bar-button-color: var(--white);
+}
+
+.notificacion-error {
+  --mdc-snackbar-container-color: var(--danger);
+  --mat-snack-bar-button-color: var(--white);
+}

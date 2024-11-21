@@ -1,0 +1,13 @@
+td,
+th {
+  text-align: center;
+}
+
+::ng-deep .mat-sort-header .mat-sort-header-container {
+  justify-content: center;
+}
+
+div {
+  width: 80%; /* Ajusta este valor según sea necesario */
+  margin: 0 auto; /* Centra la tabla */
+}
