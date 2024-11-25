@@ -1,4 +1,4 @@
-import { Desarrollador } from '../../../desarrolladores/domain';
+// import { Desarrollador } from '../../../desarrolladores/domain/model/desarrollador.model';
 
 export type Tarea = {
 	id: number;
@@ -6,7 +6,7 @@ export type Tarea = {
 	descripcion: string;
 	fechaInicio: Date;
 	fechaFin: Date;
-	responsable: Desarrollador;
+	// responsable: Desarrollador;
 	fechaCreacion: Date;
 	fechaActualizacion: Date;
 	tareas: Tarea[];

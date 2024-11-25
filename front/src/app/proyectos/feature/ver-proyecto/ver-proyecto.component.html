@@ -1,0 +1,23 @@
+<div class="project-details">
+  <h2>Project Details</h2>
+  <div>
+    <label>Nombre:</label>
+    <span>{{ proyecto.nombre }}</span>
+  </div>
+  <div>
+    <label>Descripción:</label>
+    <span>{{ proyecto.descripcion }}</span>
+  </div>
+  <div>
+    <label>Fecha Inicio:</label>
+    <span>{{ proyecto.fechaInicio | date: 'dd/MM/yyyy' }}</span>
+  </div>
+  <div>
+    <label>Fecha Fin:</label>
+    <span>{{ proyecto.fechaFin | date: 'dd/MM/yyyy' }}</span>
+  </div>
+  <div>
+    <label>Responsable:</label>
+    <span>{{ proyecto.responsable.nombre }}</span>
+  </div>
+</div>

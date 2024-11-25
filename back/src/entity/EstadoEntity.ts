@@ -1,7 +1,8 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn, JoinColumn } from "typeorm";
 
 import { Estado } from "../model";
 import { TareaEntity } from "./TareaEntity";
+import {ProyectoEntity} from "./ProyectoEntity";
 
 @Entity({ name: "estados" })
 export class EstadoEntity implements Estado {
@@ -12,5 +13,9 @@ export class EstadoEntity implements Estado {
   nombre: string;
 
   @OneToMany(() => TareaEntity, (tarea) => tarea.estado)
+  @JoinColumn({ name: "id_estado" })
   tarea: TareaEntity;
+
+  @OneToMany(() => ProyectoEntity, proyecto => proyecto.desarrolladores)
+  proyectos: ProyectoEntity[];
 }

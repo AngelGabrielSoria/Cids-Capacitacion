@@ -12,6 +12,7 @@ import {
 import { Proyecto } from "../model";
 import { DesarrolladorEntity } from "./DesarrolladorEntity";
 import { TareaEntity } from "./TareaEntity";
+import {RolEntity} from "./RolEntity";
 
 @Entity({ name: "proyectos" })
 export class ProyectoEntity implements Proyecto {
@@ -54,6 +55,8 @@ export class ProyectoEntity implements Proyecto {
   })
   desarrolladores: DesarrolladorEntity[];
 
+
   @OneToMany(() => TareaEntity, (tarea) => tarea.proyecto)
+  @JoinColumn({ name: "id_proyecto" })
   tareas: TareaEntity[];
 }

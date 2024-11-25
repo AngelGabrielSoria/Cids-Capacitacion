@@ -36,5 +36,7 @@ export class DesarrolladorEntity implements Desarrollador {
   proyectos: ProyectoEntity[];
 
   @OneToMany(() => TareaEntity, (tarea) => tarea.asignado)
+  @JoinColumn({ name: "id_asignado" })
   tareas: TareaEntity[];
 }
+

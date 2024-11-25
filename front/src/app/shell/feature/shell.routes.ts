@@ -18,10 +18,10 @@ export const routes: Routes = [
             (m) => m.routes
           ),
       },
-      { path: 'proyectos',
-          loadChildren: () => import('../../proyectos/feature/shell-proyectos/shell-proyectos.routes').then(
-            (m) => m.routes
-          )
+      {
+        path: 'proyectos',
+        loadChildren: () =>
+          import('../../proyectos/feature/shell-proyectos/shell-proyectos.routes').then((m) => m.routes),
       }
     ],
   },
