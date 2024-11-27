@@ -6,6 +6,7 @@ import {validateDto} from "../middleware";
 
 const DesarrolladorRouter = Router();
 
+// Obtener todos los desarrolladores
 DesarrolladorRouter.get("/", async (req: Request, res: Response, next: NextFunction) => {
     try {
         await DesarrolladorController.obtenerDesarrolladores(req, res);
@@ -14,6 +15,7 @@ DesarrolladorRouter.get("/", async (req: Request, res: Response, next: NextFunct
     }
 });
 
+// Obtener un desarrollador por id
 DesarrolladorRouter.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
     try {
         await DesarrolladorController.obtenerDesarrollador(req, res);
@@ -22,6 +24,7 @@ DesarrolladorRouter.get("/:id", async (req: Request, res: Response, next: NextFu
     }
 });
 
+// Crear un desarrollador, pasando los datos en el body
 DesarrolladorRouter.post(
     "/",
     validateDto(CrearDesarrolladorDto),
@@ -34,6 +37,7 @@ DesarrolladorRouter.post(
     }
 );
 
+// Actualizar un desarrollador
 DesarrolladorRouter.put(
     "/:id",
     validateDto(ActualizarDesarrolladorDto),
@@ -46,9 +50,19 @@ DesarrolladorRouter.put(
     }
 );
 
+// Eliminar un desarrollador
 DesarrolladorRouter.delete("/:id", async (req: Request, res: Response, next: NextFunction) => {
     try {
         await DesarrolladorController.eliminarDesarrollador(req, res);
+    } catch (error) {
+        next(error);
+    }
+});
+
+// Ruta para asignar una tarea, pasando el id de la tarea por body
+DesarrolladorRouter.patch("/:id/tareas", async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        await  DesarrolladorController.asignarTarea(req, res);
     } catch (error) {
         next(error);
     }

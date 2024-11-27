@@ -53,10 +53,22 @@ const eliminarDesarrollador = async (req: Request, res: Response): Promise<Respo
   }
 };
 
+const asignarTarea = async (req: Request, res: Response): Promise<Response> => {
+    try {
+        const { id } = req.params;
+        const { idTarea } = req.body;
+        const desarrollador = await DesarrolladorService.asignarTarea(Number(id), idTarea);
+        return res.json(desarrollador);
+    } catch (error) {
+        throw error;
+    }
+}
+
 export const DesarrolladorController = {
   obtenerDesarrolladores,
   obtenerDesarrollador,
   crearDesarrollador,
   actualizarDesarrollador,
   eliminarDesarrollador,
+  asignarTarea
 };

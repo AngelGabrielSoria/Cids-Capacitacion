@@ -58,6 +58,21 @@ const asignarDesarrolladorTarea = async (id: number, desarrollador: any) => {
     }
 }
 
+const obtenerEstado = async (id: number) => {
+    try {
+        return await TareaRepository.obtenerEstado(id);
+    } catch (error: any) {
+        throw error;
+    }
+}
+
+const actualizarEstado = async (id: number, estado: any) => {
+    try {
+        return await TareaRepository.actualizarEstado(id, estado);
+    } catch (error: any) {
+        throw error;
+    }
+}
 
 export const TareaService = {
     crearTarea,
@@ -66,5 +81,7 @@ export const TareaService = {
     actualizarTarea,
     eliminarTarea,
     cambiarEstadoTarea,
-    asignarDesarrolladorTarea
+    asignarDesarrolladorTarea,
+    obtenerEstado,
+    actualizarEstado,
 };

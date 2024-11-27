@@ -1,8 +1,9 @@
 import dataSource from "../db";
-import { ProyectoEntity } from "../entity";
+import {DesarrolladorEntity, ProyectoEntity} from "../entity";
 import { DatabaseException } from "../exception";
 
 const _proyectoRepository = dataSource.getRepository(ProyectoEntity);
+
 
 const crearProyecto = async (proyecto: any, desarrollador: any) => {
     try {
@@ -76,6 +77,19 @@ const obtenerTareas = async (id: number) => {
 };
 
 
+const obtenerDesarrolladores = async (id: number) => {
+    try {
+        const proyecto = await _proyectoRepository.findOne({
+            where: { id },
+            relations: ["tareas", "tareas.desarrollador"]
+        });
+        const desarrolladores = proyecto?.tareas.map(tarea => tarea.asignado);
+        return desarrolladores;
+    } catch (error: any) {
+        throw new DatabaseException(error.message);
+    }
+};
+
 
 export const ProyectoRepository = {
     crearProyecto,
@@ -85,4 +99,5 @@ export const ProyectoRepository = {
     eliminarProyecto,
     agregarTareaProyecto,
     obtenerTareas,
+    obtenerDesarrolladores
 };

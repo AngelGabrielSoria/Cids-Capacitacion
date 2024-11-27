@@ -13,6 +13,24 @@ const obtenerRoles = (): Promise<Rol[]> => {
   }
 };
 
+const eliminarRol = async (id: number) => {
+    try {
+        await _rolRepository.delete(id);
+    } catch (error: any) {
+        throw new DatabaseException(error.message);
+    }
+}
+
+const agregarRol = async (rol: any) => {
+    try {
+        return await _rolRepository.save(rol);
+    } catch (error: any) {
+        throw error;
+    }
+}
+
 export const RolRepository = {
   obtenerRoles,
+  eliminarRol,
+  agregarRol
 };

@@ -1,10 +1,11 @@
 import dataSource from "../db";
 import { ActualizarDesarrolladorDto, CrearDesarrolladorDto } from "../dto";
-import { DesarrolladorEntity } from "../entity";
+import {DesarrolladorEntity, TareaEntity} from "../entity";
 import { DatabaseException } from "../exception";
 import { type Desarrollador } from "../model";
 
 const _desarrolladorRepository = dataSource.getRepository(DesarrolladorEntity);
+const _tareaRepository = dataSource.getRepository(TareaEntity)
 
 const obtenerDesarrolladores = async (): Promise<Desarrollador[]> => {
   try {
@@ -75,10 +76,34 @@ const eliminarDesarrollador = async (id: number): Promise<void> => {
   }
 };
 
+const asignarTarea = async (id: number, idTarea: number): Promise<Desarrollador> => {
+  try {
+    const desarrollador = await obtenerDesarrollador(id);
+
+    if (!desarrollador) {
+      throw new DatabaseException(`Desarrollador con id ${id} no encontrado.`);
+    }
+
+    const tarea = await _tareaRepository.findOne({ where: { id: idTarea } });
+
+    if (!tarea) {
+      throw new DatabaseException(`Tarea con id ${idTarea} no encontrada.`);
+    }
+
+    desarrollador.tareas.push(tarea);
+
+    return await _desarrolladorRepository.save(desarrollador);
+  } catch (error: any) {
+    throw new DatabaseException(error.message);
+  }
+};
+
 export const DesarrolladorRepository = {
   obtenerDesarrolladores,
   obtenerDesarrollador,
   crearDesarrollador,
   actualizarDesarrollador,
   eliminarDesarrollador,
+  asignarTarea
+
 };

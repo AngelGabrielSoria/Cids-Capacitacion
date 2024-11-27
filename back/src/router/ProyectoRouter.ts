@@ -69,8 +69,13 @@ ProyectoRouter.get("/:id/tarea", async (req, res, next) => {
     }
 });
 
-
-
-
+// Desarrolladores Por proyecto
+ProyectoRouter.get("/:id/desarrolladores", async (req, res, next) => {
+    try {
+        await ProyectoController.obtenerDesarrolladores(req, res);
+    } catch (error) {
+        next(error);
+    }
+});
 
 export default ProyectoRouter;

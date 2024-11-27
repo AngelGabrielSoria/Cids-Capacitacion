@@ -1,42 +1,42 @@
-import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import {Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 
-import { Desarrollador } from "../model";
-import { ProyectoEntity } from "./ProyectoEntity";
-import { RolEntity } from "./RolEntity";
-import { TareaEntity } from "./TareaEntity";
+import {Desarrollador} from "../model";
+import {ProyectoEntity} from "./ProyectoEntity";
+import {RolEntity} from "./RolEntity";
+import {TareaEntity} from "./TareaEntity";
 
-@Entity({ name: "desarrolladores" })
+@Entity({name: "desarrolladores"})
 export class DesarrolladorEntity implements Desarrollador {
-  @PrimaryGeneratedColumn()
-  id: number;
+    @PrimaryGeneratedColumn()
+    id: number;
 
-  @Column()
-  nombre: string;
+    @Column()
+    nombre: string;
 
-  @Column()
-  correo: string;
+    @Column()
+    correo: string;
 
-  @ManyToOne(() => RolEntity, (rol) => rol.desarrollador)
-  @JoinColumn({ name: "id_rol" })
-  rol: RolEntity;
+    @ManyToOne(() => RolEntity, (rol) => rol.desarrollador)
+    @JoinColumn({name: "id_rol"})
+    rol: RolEntity;
 
-  @Column()
-  fechaContratacion: Date;
+    @Column()
+    fechaContratacion: Date;
 
-  @Column()
-  fechaCreacion: Date;
+    @Column()
+    fechaCreacion: Date;
 
-  @Column()
-  fechaActualizacion: Date;
+    @Column()
+    fechaActualizacion: Date;
 
-  @OneToMany(() => ProyectoEntity, (proyecto) => proyecto.responsable)
-  proyectosResponsable: ProyectoEntity[];
+    @OneToMany(() => ProyectoEntity, (proyecto) => proyecto.responsable)
+    proyectosResponsable: ProyectoEntity[];
 
-  @ManyToMany(() => ProyectoEntity, (proyecto) => proyecto.desarrolladores)
-  proyectos: ProyectoEntity[];
+    @ManyToMany(() => ProyectoEntity, (proyecto) => proyecto.desarrolladores)
+    proyectos: ProyectoEntity[];
 
-  @OneToMany(() => TareaEntity, (tarea) => tarea.asignado)
-  @JoinColumn({ name: "id_asignado" })
-  tareas: TareaEntity[];
+    @OneToMany(() => TareaEntity, (tarea) => tarea.asignado, {cascade: true})
+    @JoinColumn({name: "id_asignado"})
+    tareas: TareaEntity[];
 }
 

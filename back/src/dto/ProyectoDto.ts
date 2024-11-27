@@ -1,4 +1,4 @@
-import { IsDateString, IsNotEmpty, IsString, ValidateNested } from "class-validator";
+import {IsDateString, IsNotEmpty, IsOptional, IsString, ValidateNested} from "class-validator";
 import { DesarrolladorDto } from "./DesarrolladorDto";
 import { TareaDto } from "./TareaDto";
 
@@ -23,7 +23,7 @@ export class ProyectoDto {
     @ValidateNested()
     idResponsable: DesarrolladorDto;
 
-    @IsNotEmpty({ message: "El id de la tarea es obligatorio." })
+    @IsOptional()
     @ValidateNested()
     tareas: TareaDto[];
 }

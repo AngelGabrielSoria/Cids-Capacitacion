@@ -6,10 +6,6 @@ import {IsDate, IsInt, IsNotEmpty, IsString, ValidateNested} from "class-validat
 
 export class TareaDto {
 
-    @IsNotEmpty({message: "El id es obligatorio."})
-    @IsInt({message: "El id debe ser un número entero."})
-    id: number;
-
     @IsNotEmpty({message: "El proyecto es obligatorio."})
     @ValidateNested()
     proyecto: ProyectoDto;
@@ -33,13 +29,5 @@ export class TareaDto {
     @IsNotEmpty({message: "La fecha límite es obligatoria."})
     @IsDate({message: "La fecha límite debe ser un formato de fecha válido."})
     fechaLimite: Date;
-
-    @IsNotEmpty({message: "La fecha de creación es obligatoria."})
-    @IsDate({message: "La fecha de creación debe ser un formato de fecha válido."})
-    fechaCreacion: Date;
-
-    @IsNotEmpty({message: "La fecha de actualización es obligatoria."})
-    @IsDate({message: "La fecha de actualización debe ser un formato de fecha válido."})
-    fechaActualizacion: Date;
 
 }

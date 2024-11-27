@@ -61,10 +61,26 @@ const eliminarDesarrollador = async (id: number): Promise<void> => {
     }
 };
 
+
+const asignarTarea = async (id: number, idTarea: number): Promise<Desarrollador> => {
+    try {
+        const desarrollador = await DesarrolladorRepository.obtenerDesarrollador(id);
+
+        if (!desarrollador) {
+            throw new NotFoundException(`Desarrollador con id ${id} no encontrado.`);
+        }
+
+        return DesarrolladorRepository.asignarTarea(id, idTarea);
+    } catch (error: any) {
+        throw error;
+    }
+}
+
 export const DesarrolladorService = {
     obtenerDesarrolladores,
     obtenerDesarrollador,
     crearDesarrollador,
     actualizarDesarrollador,
     eliminarDesarrollador,
+    asignarTarea
 };

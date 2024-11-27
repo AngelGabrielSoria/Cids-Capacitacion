@@ -58,6 +58,14 @@ const obtenerTareas = async (id: number) => {
     }
 };
 
+const obtenerDesarrolladores = async (id: number) => {
+    try {
+         return await ProyectoRepository.obtenerDesarrolladores(id);
+    } catch (error: any) {
+        throw error;
+    }
+};
+
 
 
 
@@ -69,4 +77,5 @@ export const ProyectoService = {
     actualizarProyecto,
     eliminarProyecto,
     agregarTareaProyecto,
+    obtenerDesarrolladores
 };

@@ -64,6 +64,26 @@ const asignarTarea = async (req: Request, res: Response) => {
     }
 }
 
+const obtenerEstado = async (req: Request, res: Response) => {
+    try {
+        const id = parseInt(req.params.id);
+        const response = await TareaService.obtenerEstado(id);
+        res.status(200).json(response);
+    } catch (error: any) {
+        res.status(400).json({ message: error.message });
+    }
+}
+
+const actualizarEstado = async (req: Request, res: Response) => {
+    try {
+        const id = parseInt(req.params.id);
+        const estado = req.body;
+        const response = await TareaService.actualizarEstado(id, estado);
+        res.status(200).json(response);
+    } catch (error: any) {
+        res.status(400).json({ message: error.message });
+    }
+}
 
 export const TareaController = {
     crearTarea,
@@ -71,6 +91,8 @@ export const TareaController = {
     obtenerTarea,
     actualizarTarea,
     eliminarTarea,
-    asignarTarea
+    asignarTarea,
+    obtenerEstado,
+    actualizarEstado
 
 }
