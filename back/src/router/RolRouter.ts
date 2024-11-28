@@ -1,16 +1,18 @@
-import { NextFunction, Request, Response, Router } from "express";
+import {NextFunction, Request, Response, Router} from "express";
 
-import { RolController } from "../controller";
+import {RolController} from "../controller";
+
+import {validateDto} from "../middleware";
 
 const RolRouter = Router();
 
 // Ruta para obtener todos los roles
 RolRouter.get("/", async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    await RolController.obtenerRoles(req, res);
-  } catch (error) {
-    next(error);
-  }
+    try {
+        await RolController.obtenerRoles(req, res);
+    } catch (error) {
+        next(error);
+    }
 });
 
 // Ruta para obtener un rol por su id
@@ -23,7 +25,7 @@ RolRouter.delete("/:id", async (req: Request, res: Response, next: NextFunction)
 });
 
 // Ruta para crear un rol
-RolRouter.post( "/", async (req: Request, res: Response, next: NextFunction) => {
+RolRouter.post("/", async (req: Request, res: Response, next: NextFunction) => {
     try {
         await RolController.agregarRol(req, res);
     } catch (error) {

@@ -1,17 +1,17 @@
 import {IsDateString, IsOptional, IsString, ValidateNested} from "class-validator";
 
-import { DesarrolladorDto } from "./DesarrolladorDto";
-import {EstadoDto} from "./EstadoDto";
-import {ProyectoDto} from "./ProyectoDto";
+import {DesarrolladorDto} from "../desarrollador/DesarrolladorDto";
+import {CrearEstadoDto} from "../estado/CrearEstadoDto";
+import {ProyectoDto} from "../proyecto/ProyectoDto";
 
 export class ActualizarTareaDto {
     @IsOptional()
     @ValidateNested()
-    id_Proyecto: ProyectoDto;
+    proyecto: ProyectoDto;
 
     @IsOptional()
     @ValidateNested()
-    Encargado: DesarrolladorDto;
+    asignado: DesarrolladorDto;
 
     @IsOptional()
     @IsString({message: "El título debe ser un texto."})
@@ -24,7 +24,7 @@ export class ActualizarTareaDto {
 
     @IsOptional()
     @ValidateNested()
-    id_Estado: EstadoDto;
+    estado: CrearEstadoDto;
 
     @IsOptional()
     @IsDateString({}, {message: "La fecha límite debe ser un formato de fecha válido."})

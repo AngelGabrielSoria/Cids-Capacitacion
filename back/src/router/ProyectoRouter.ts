@@ -1,6 +1,7 @@
 import {Router} from "express";
 import {ProyectoController} from "../controller";
 
+import {validateDto} from "../middleware";
 const ProyectoRouter = Router();
 
 
@@ -51,8 +52,26 @@ ProyectoRouter.delete("/:id", async (req, res, next) => {
     }
 });
 
+// agregar responsable a un proyecto
+ProyectoRouter.put("/:id/responsable", async (req, res, next) => {
+    try {
+        await ProyectoController.agregarResponsable(req, res);
+    } catch (error) {
+        next(error);
+    }
+});
+
+// agregar desarrollador a proyecto
+ProyectoRouter.put("/:id/desarrollador", async (req, res, next) => {
+    try {
+        await ProyectoController.agregarDesarrollador(req, res);
+    } catch (error) {
+        next(error);
+    }
+});
+
 // agregar tarea a proyecto
-ProyectoRouter.post("/:id/tarea", async (req, res, next) => {
+ProyectoRouter.put("/:id/tarea", async (req, res, next) => {
     try {
         await ProyectoController.agregarTareaProyecto(req, res);
     } catch (error) {

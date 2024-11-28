@@ -1,5 +1,5 @@
-import { Tarea } from '../model';
-import { TareaRepository } from "../repository/TareaRepository";
+import {Tarea} from '../model';
+import {TareaRepository} from "../repository/TareaRepository";
 
 
 const crearTarea = async (tarea: Tarea) => {

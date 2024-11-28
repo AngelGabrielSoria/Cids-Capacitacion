@@ -60,13 +60,27 @@ const obtenerTareas = async (id: number) => {
 
 const obtenerDesarrolladores = async (id: number) => {
     try {
-         return await ProyectoRepository.obtenerDesarrolladores(id);
+        return await ProyectoRepository.obtenerDesarrolladores(id);
     } catch (error: any) {
         throw error;
     }
 };
 
+const agregarResponsable = async (id: number, responsable: any) => {
+    try {
+        return await ProyectoRepository.agregarResponsable(id, responsable);
+    } catch (error: any) {
+        throw error;
+    }
+}
 
+const agregarDesarrollador = async (id: number, desarrollador: any) => {
+    try {
+        return await ProyectoRepository.agregarDesarrollador(id, desarrollador);
+    } catch (error: any) {
+        throw error;
+    }
+}
 
 
 export const ProyectoService = {
@@ -77,5 +91,7 @@ export const ProyectoService = {
     actualizarProyecto,
     eliminarProyecto,
     agregarTareaProyecto,
-    obtenerDesarrolladores
+    obtenerDesarrolladores,
+    agregarResponsable,
+    agregarDesarrollador,
 };

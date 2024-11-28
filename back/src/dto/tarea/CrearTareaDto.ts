@@ -1,10 +1,10 @@
-import {DesarrolladorDto} from "./DesarrolladorDto";
-import {ProyectoDto} from "./ProyectoDto";
-import {EstadoDto} from "./EstadoDto";
+import {DesarrolladorDto} from "../desarrollador/DesarrolladorDto";
+import {ProyectoDto} from "../proyecto/ProyectoDto";
+import {CrearEstadoDto} from "../estado/CrearEstadoDto";
 import {IsDate, IsInt, IsNotEmpty, IsString, ValidateNested} from "class-validator";
 
 
-export class TareaDto {
+export class CrearTareaDto {
 
     @IsNotEmpty({message: "El proyecto es obligatorio."})
     @ValidateNested()
@@ -12,7 +12,7 @@ export class TareaDto {
 
     @IsNotEmpty({message: "El desarrollador asignado es obligatorio."})
     @ValidateNested()
-    desarrolladorAsignado: DesarrolladorDto;
+    asignado: DesarrolladorDto;
 
     @IsNotEmpty({message: "El título es obligatorio."})
     @IsString({message: "El título debe ser un texto."})
@@ -24,7 +24,7 @@ export class TareaDto {
 
     @IsNotEmpty({message: "El estado es obligatorio."})
     @ValidateNested()
-    estado: EstadoDto;
+    estado: CrearEstadoDto;
 
     @IsNotEmpty({message: "La fecha límite es obligatoria."})
     @IsDate({message: "La fecha límite debe ser un formato de fecha válido."})

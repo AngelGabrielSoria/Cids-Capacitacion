@@ -4,6 +4,7 @@ import { TareaController } from "../controller";
 import { validateDto } from "../middleware";
 import { CrearTareaDto, ActualizarTareaDto } from "../dto";
 
+
 const TareaRouter = Router();
 
 // Ruta para obtener todas las tareas
@@ -50,7 +51,7 @@ TareaRouter.put(
     });
 
 // Ruta para asignar una tarea a un desarrollador
-TareaRouter.patch(
+TareaRouter.put(
     "/:id/desarrollador",
     async (req: Request, res: Response, next: NextFunction) => {
         try {
@@ -79,7 +80,7 @@ TareaRouter.get("/:id/estado", async (req: Request, res: Response, next: NextFun
 });
 
 // Ruta para actualizar el estado de una tarea
-TareaRouter.patch("/:id/estado", async (req: Request, res: Response, next: NextFunction) => {
+TareaRouter.put("/:id/estado", async (req: Request, res: Response, next: NextFunction) => {
     try {
         await TareaController.actualizarEstado(req, res);
     } catch (error) {

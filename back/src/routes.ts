@@ -1,5 +1,5 @@
 import { Ruta } from "./model";
-import { DesarrolladorRouter, RolRouter, TareaRouter, ProyectoRouter } from "./router";
+import { DesarrolladorRouter, RolRouter, TareaRouter, ProyectoRouter, EstadoRouter } from "./router";
 
 export const ROUTES: Ruta[] = [
   {
@@ -17,6 +17,10 @@ export const ROUTES: Ruta[] = [
   {
     path: "/proyectos",
     router: ProyectoRouter
+  },
+  {
+    path: "/estados",
+    router: EstadoRouter
   }
 
 ];

@@ -1,6 +1,6 @@
-import { IsInt, IsNotEmpty, IsString} from "class-validator";
+import {IsInt, IsNotEmpty, IsString} from "class-validator";
 
-export class EstadoDto {
+export class RolDto {
     @IsNotEmpty({message: "El id es obligatorio."})
     @IsInt({message: "El id debe ser un número entero."})
     id: number;

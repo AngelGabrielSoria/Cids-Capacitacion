@@ -1,6 +1,6 @@
 import dataSource from "../db";
-import { TareaEntity } from "../entity";
-import { DatabaseException } from "../exception";
+import {TareaEntity} from "../entity";
+import {DatabaseException} from "../exception";
 
 
 const _tareaRepository = dataSource.getRepository(TareaEntity);
@@ -15,7 +15,7 @@ const crearTarea = async (tarea: any) => {
 
 const obtenerTarea = async (id: number) => {
     try {
-        return await _tareaRepository.findOne({where: {id}, relations: ['asignado', 'estado']});
+        return await _tareaRepository.findOne({where: {id}, relations: [ 'proyecto', 'asignado', 'estado']});
     } catch (error: any) {
         throw new DatabaseException(error.message);
     }
@@ -57,8 +57,13 @@ const cambiarEstadoTarea = async (id: number, estado: any) => {
 
 const asignarDesarrolladorTarea = async (id: number, desarrollador: any) => {
     try {
-        await _tareaRepository.update(id, desarrollador);
-        return obtenerTarea(id);
+        const tarea = await obtenerTarea(id);
+        if (!tarea) {
+            throw new DatabaseException('Tarea not found');
+        }
+        tarea.asignado = desarrollador;
+        await _tareaRepository.save(tarea);
+        return tarea;
     } catch (error: any) {
         throw new DatabaseException(error.message);
     }

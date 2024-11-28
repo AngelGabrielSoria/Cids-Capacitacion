@@ -62,12 +62,11 @@ DesarrolladorRouter.delete("/:id", async (req: Request, res: Response, next: Nex
 // Ruta para asignar una tarea, pasando el id de la tarea por body
 DesarrolladorRouter.patch("/:id/tareas", async (req: Request, res: Response, next: NextFunction) => {
     try {
-        await  DesarrolladorController.asignarTarea(req, res);
+        await DesarrolladorController.asignarTarea(req, res);
     } catch (error) {
         next(error);
     }
 });
-
 
 
 export default DesarrolladorRouter;

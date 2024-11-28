@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { TareaService } from "../service";
+import {validateDto} from "../middleware";
 
 
 const crearTarea = async (req: Request, res: Response) => {
@@ -56,8 +57,10 @@ const eliminarTarea = async (req: Request, res: Response) => {
 const asignarTarea = async (req: Request, res: Response) => {
     try {
         const id = parseInt(req.params.id);
-        const desarrollador = req.body;
-        const response = await TareaService.asignarDesarrolladorTarea(id, desarrollador);
+        const payload = req.body;
+        validateDto(payload);
+        const response = await TareaService.asignarDesarrolladorTarea(id, payload);
+        console.log(response);
         res.status(200).json(response);
     } catch (error: any) {
         res.status(400).json({ message: error.message });
