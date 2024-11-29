@@ -140,6 +140,15 @@ const tareasSinAsignar = async () => {
     }
 }
 
+const desarrolladoresSinAsignar = async () => {
+    try {
+        const desarrolladores = await dataSource.getRepository(DesarrolladorEntity).find();
+        return desarrolladores
+    } catch (error: any) {
+        throw new DatabaseException(error.message);
+    }
+}
+
 export const ProyectoRepository = {
     crearProyecto,
     obtenerProyectos,
@@ -152,4 +161,5 @@ export const ProyectoRepository = {
     agregarResponsable,
     agregarDesarrollador,
     tareasSinAsignar,
+    desarrolladoresSinAsignar
 };

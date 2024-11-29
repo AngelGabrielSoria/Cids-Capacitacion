@@ -6,6 +6,7 @@ export type Tarea = {
 	titulo: string;
 	descripcion: string;
 	fechaInicio: Date;
+	fechaLimite: Date;
 	fechaCreacion: Date;
 	fechaActualizacion: Date;
 	asignado: Desarrollador;

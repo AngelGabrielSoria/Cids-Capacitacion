@@ -1,4 +1,4 @@
-import { Proyecto } from "../model";
+import {Desarrollador, Proyecto} from "../model";
 import { ProyectoRepository } from "../repository";
 
 const crearProyecto = async (proyecto: Proyecto, desarrollador: any) => {
@@ -90,6 +90,14 @@ const tareasSinAsignar = async () => {
     }
 }
 
+const desarrolladoresSinAsignar = async (): Promise<Desarrollador[]> => {
+    try {
+        return await ProyectoRepository.desarrolladoresSinAsignar();
+    } catch (error: any) {
+        throw error;
+    }
+}
+
 
 export const ProyectoService = {
     crearProyecto,
@@ -102,5 +110,6 @@ export const ProyectoService = {
     obtenerDesarrolladores,
     agregarResponsable,
     agregarDesarrollador,
-    tareasSinAsignar
+    tareasSinAsignar,
+    desarrolladoresSinAsignar
 };

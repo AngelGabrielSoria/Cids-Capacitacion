@@ -12,6 +12,7 @@ import { TablaProyectosComponent } from '../../ui';
   templateUrl: './consultar-proyectos.component.html',
   standalone: true,
   imports: [AsyncPipe, MatButton, TablaProyectosComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConsultarProyectosComponent {
   protected readonly proyectoService = inject(ProyectoService);
@@ -39,6 +40,6 @@ export class ConsultarProyectosComponent {
         filter((res) => res),
         switchMap(() => this.proyectoService.eliminarProyecto(id)),
       )
-      .subscribe();
+      .subscribe(() => window.location.reload());
   }
 }

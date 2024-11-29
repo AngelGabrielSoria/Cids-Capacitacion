@@ -1,1 +1,56 @@
-<p>formulario-proyecto works!</p>
+<form [formGroup]="form" class="flex flex-col bg-gray-100 rounded-md p-8 gap-8" (ngSubmit)="onSubmit()">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input matInput [formControlName]="formKeys.nombre" />
+      @if (nombre.invalid && (nombre.dirty ) && nombre.errors?.["required"]) {
+        <mat-error>El campo es requerido.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Descripcion</mat-label>
+      <input matInput [formControlName]="formKeys.descripcion" />
+      @if (descripcion.invalid && (descripcion.dirty || descripcion.touched) && descripcion.errors?.["required"]) {
+        <mat-error>El campo es requerido.</mat-error>
+      }
+
+      @if (descripcion.invalid && (descripcion.dirty || descripcion.touched) && descripcion.errors?.["require"]) {
+        <mat-error>El campo es requerido.</mat-error>
+      }
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <mat-label>Fecha Inicio</mat-label>
+      <input matInput [matDatepicker]="pickerInicio" [formControlName]="formKeys.fechaInicio" />
+      <mat-datepicker-toggle matIconSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+      <mat-datepicker #pickerInicio></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Fecha Fin</mat-label>
+        <input matInput [matDatepicker]="pickerFin" [formControlName]="formKeys.fechaFin" />
+        <mat-datepicker-toggle matIconSuffix [for]="pickerFin"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFin></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Responsable</mat-label>
+      <mat-select [formControlName]="formKeys.responsable">
+        @for (responsable of desarrolladores; track responsable.id) {
+          <mat-option [value]="responsable.id">{{ responsable.nombre }}</mat-option>
+        }
+      </mat-select>
+      @if (responsable.invalid && (responsable.dirty || responsable.touched) && responsable.errors?.["required"]) {
+        <mat-error>El campo es requerido.</mat-error>
+      }
+    </mat-form-field>
+
+  </div>
+
+  <div class="flex flex-col sm:flex-row sm:justify-end gap-2">
+    <button type="reset" mat-button>Limpiar</button>
+    <button type="submit" mat-flat-button>{{ esRegistro ? "Registrar" : "Guardar" }}</button>
+  </div>
+</form>

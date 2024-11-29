@@ -5,19 +5,15 @@ export const routes: Routes = [
     {
         path: '',
         loadComponent: () =>
-            import('../consultar-tareas/consultar-tareas.component').then(
-                (m) => m.ConsultarTareasComponent
-            ),
+            import('../consultar-tareas/consultar-tareas.component').then((m) => m.ConsultarTareasComponent),
         providers: [TareaService],
     },
-    // {
-    //   path: 'registrar',
-    //   loadComponent: () =>
-    //     import('../registrar-proyecto/registrar-proyecto.component').then(
-    //       (m) => m.RegistrarproyectoComponent
-    //     ),
-    //   providers: [ProyectoService],
-    // },
+    {
+        path: 'registrar',
+        loadComponent: () =>
+            import('../registrar-tarea/registrar-tarea.component').then((m) => m.RegistrarTareaComponent),
+        providers: [TareaService],
+    },
     // {
     //   path: 'ver/:id',
     //   loadComponent: () =>

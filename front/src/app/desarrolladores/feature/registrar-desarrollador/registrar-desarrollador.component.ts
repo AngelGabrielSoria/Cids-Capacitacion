@@ -5,11 +5,12 @@ import { Router } from '@angular/router';
 import { NotificacionService } from '../../../shared';
 import { CrearDesarrolladorDto, DesarrolladorService } from '../../domain';
 import { FormularioDesarrolladorComponent } from '../../ui';
+import {FormularioProyectoComponent} from '../../../proyectos';
 
 @Component({
   selector: 'app-registrar-desarrollador',
   standalone: true,
-  imports: [FormularioDesarrolladorComponent, AsyncPipe],
+  imports: [FormularioDesarrolladorComponent, AsyncPipe, FormularioProyectoComponent],
   templateUrl: './registrar-desarrollador.component.html',
   styleUrl: './registrar-desarrollador.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

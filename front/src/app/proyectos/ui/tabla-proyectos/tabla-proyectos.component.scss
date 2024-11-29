@@ -3,7 +3,7 @@ th {
   text-align: center;
 }
 
-::ng-deep .mat-sort-header .mat-sort-header-container {
+ .mat-sort-header .mat-sort-header-container {
   justify-content: center;
 }
 
@@ -15,4 +15,8 @@ div {
 .mat-mdc-form-field {
   font-size: 14px;
   width: 100%;
+}
+
+.mat-elevation-z8 {
+  width: 80%;
 }

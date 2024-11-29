@@ -3,7 +3,7 @@
         <h2>Registrar Proyecto</h2>
     </div>
 
-    @if (tareas$ | async; as tareas) {
-        <app-formulario-proyecto [tareas]="tareas" (enviarFormulario)="onEnviarFormulario($event)" />
+    @if (desarrolladores$ | async; as desarrolladores) {
+        <app-formulario-proyecto [desarrolladores]="desarrolladores" (enviarFormulario)="onEnviarFormulario($event)" />
     }
 </div>

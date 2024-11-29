@@ -16,7 +16,7 @@ export class DesarrolladorEntity implements Desarrollador {
     @Column()
     correo: string;
 
-    @ManyToOne(() => RolEntity, (rol) => rol.desarrollador)
+    @ManyToOne(() => RolEntity, (rol) => rol.desarrollador, {cascade: true})
     @JoinColumn({name: "id_rol"})
     rol: RolEntity;
 
@@ -29,13 +29,13 @@ export class DesarrolladorEntity implements Desarrollador {
     @Column()
     fechaActualizacion: Date;
 
-    @OneToMany(() => ProyectoEntity, (proyecto) => proyecto.responsable)
+    @OneToMany(() => ProyectoEntity, (proyecto) => proyecto.responsable, {cascade: true, onDelete: "CASCADE"})
     proyectosResponsable: ProyectoEntity[];
 
     @ManyToMany(() => ProyectoEntity, (proyecto) => proyecto.desarrolladores)
     proyectos: ProyectoEntity[];
 
-    @OneToMany(() => TareaEntity, (tarea) => tarea.asignado, {cascade: true})
+    @OneToMany(() => TareaEntity, (tarea) => tarea.asignado, {cascade: true, onDelete: "CASCADE"})
     @JoinColumn({name: "id_asignado"})
     tareas: TareaEntity[];
 }

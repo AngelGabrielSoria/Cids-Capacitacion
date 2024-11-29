@@ -1,1 +1,63 @@
-<p>formulario-tareas works!</p>
+<form [formGroup]="form" class="flex flex-col bg-gray-100 rounded-md p-8 gap-8" (ngSubmit)="onSubmit()">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <mat-form-field>
+      <mat-label>Titulo</mat-label>
+      <input matInput [formControlName]="formKeys.titulo" />
+      @if (titulo.invalid && (titulo.dirty || titulo.touched) && titulo.errors?.["required"]) {
+        <mat-error>El campo es requerido.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>descripcion</mat-label>
+      <input matInput [formControlName]="formKeys.descripcion" />
+      @if (descripcion.invalid && (descripcion.dirty || descripcion.touched) && descripcion.errors?.["required"]) {
+        <mat-error>El campo es requerido.</mat-error>
+      }
+
+      @if (descripcion.invalid && (descripcion.dirty || descripcion.touched) && descripcion.errors?.["required"]) {
+        <mat-error>El campo debe ser un email.</mat-error>
+      }
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <mat-label>Fecha Inicio</mat-label>
+      <input matInput [matDatepicker]="picker" [formControlName]="formKeys.fechaInicio" />
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      @if (
+        fechaInicio.invalid &&
+        (fechaInicio.dirty || fechaInicio.touched) &&
+        fechaInicio.errors?.["required"]
+        ) {
+        <mat-error>El campo es requerido.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Fecha Fin</mat-label>
+        <input matInput [matDatepicker]="pickerFin" [formControlName]="formKeys.fechaLimite" />
+        <mat-datepicker-toggle matIconSuffix [for]="pickerFin"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFin></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Desarrollador a asignar</mat-label>
+      <mat-select [formControlName]="formKeys.asignado">
+        @for (asignado of asignados; track asignado.id) {
+          <mat-option [value]="asignado.id">{{ asignado.nombre }}</mat-option>
+        }
+      </mat-select>
+      @if (asignado.invalid && (asignado.dirty || asignado.touched) && asignado.errors?.["required"]) {
+        <mat-error>El campo es requerido.</mat-error>
+      }
+    </mat-form-field>
+  </div>
+
+  <div class="flex flex-col sm:flex-row sm:justify-end gap-2">
+    <button type="reset" mat-button>Limpiar</button>
+    <button type="submit" mat-flat-button>{{ esRegistro ? "Registrar" : "Guardar" }}</button>
+  </div>
+</form>
+

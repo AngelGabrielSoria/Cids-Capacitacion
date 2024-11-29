@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Proyecto} from '../../model';
 import { CrearProyectoDto, ActualizarProyectoDto } from '../../dto';
+import {Desarrollador} from '../../../../desarrolladores/domain';
 
 @Injectable()
 export class ProyectoService {
@@ -35,5 +36,9 @@ export class ProyectoService {
 
   obtenerTareasSinAsignar(): Observable<any> {
     return this.http.get<any>(`${this.PROYECTOS_URL}/tareas-sin-asignar`);
+  }
+
+  obtenerDesarrolladoresSinAsignar(): Observable<Desarrollador[]> {
+    return this.http.get<Desarrollador[]>(`${'http://localhost:3000'}/desarrolladores`);
   }
 }

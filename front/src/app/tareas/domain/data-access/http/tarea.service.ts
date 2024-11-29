@@ -36,4 +36,8 @@ export class TareaService {
     obtenerEstado(): Observable<Estado[]> {
         return this.http.get<Estado[]>(this.ESTADO_URL);
     }
+
+    obtenerDesarrolladores(): Observable<any> {
+        return this.http.get('http://localhost:3000/desarrolladores');
+    }
 }

@@ -10,14 +10,14 @@ export const routes: Routes = [
       ),
     providers: [ProyectoService],
   },
-  // {
-  //   path: 'registrar',
-  //   loadComponent: () =>
-  //     import('../registrar-proyecto/registrar-proyecto.component').then(
-  //       (m) => m.RegistrarproyectoComponent
-  //     ),
-  //   providers: [ProyectoService],
-  // },
+   {
+     path: 'registrar',
+  loadComponent: () =>
+       import('../registrar-proyecto/registrar-proyecto.component').then(
+         (m) => m.RegistrarproyectoComponent
+       ),
+     providers: [ProyectoService],
+ },
   // {
   //   path: 'ver/:id',
   //   loadComponent: () =>

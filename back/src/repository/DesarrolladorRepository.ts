@@ -70,7 +70,16 @@ const actualizarDesarrollador = async (id: number, payload: ActualizarDesarrolla
 
 const eliminarDesarrollador = async (id: number): Promise<void> => {
     try {
-        await _desarrolladorRepository.delete(id);
+        const desarrollador = await _desarrolladorRepository.findOne({
+            where: { id },
+            relations: ["tareas", "proyectosResponsable", "proyectos"]
+        });
+
+        if (!desarrollador) {
+            throw new DatabaseException(`Desarrollador con id ${id} no encontrado.`);
+        }
+
+        await _desarrolladorRepository.remove(desarrollador);
     } catch (error: any) {
         throw new DatabaseException(error.message);
     }

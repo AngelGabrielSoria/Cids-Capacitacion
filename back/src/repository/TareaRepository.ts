@@ -8,6 +8,7 @@ const _tareaRepository = dataSource.getRepository(TareaEntity);
 
 const crearTarea = async (tarea: any) => {
     try {
+        tarea.estado = {id: 1};
         return await _tareaRepository.save(tarea);
     } catch (error: any) {
         throw error;

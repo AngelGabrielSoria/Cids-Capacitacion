@@ -19,12 +19,14 @@ export class RegistrarproyectoComponent {
   private readonly notificacionService = inject(NotificacionService);
   private readonly router = inject(Router);
 
-  tareas$ = this.proyectoService.obtenerTareasSinAsignar();
+  desarrolladores$ = this.proyectoService.obtenerDesarrolladoresSinAsignar();
 
   onEnviarFormulario(payload: CrearProyectoDto): void {
     this.proyectoService.crearProyecto(payload).subscribe(() => {
-      this.notificacionService.mostrarNotificacionExito('proyecto registrado correctamente.');
+      this.notificacionService.mostrarNotificacionExito('Proyecto registrado correctamente.');
       this.router.navigate(['/proyectos']);
     });
   }
+
+
 }

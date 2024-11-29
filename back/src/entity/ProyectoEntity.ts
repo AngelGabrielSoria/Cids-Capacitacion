@@ -30,7 +30,7 @@ export class ProyectoEntity implements Proyecto {
     @Column()
     fechaFin: Date;
 
-    @ManyToOne(() => DesarrolladorEntity, (desarrollador) => desarrollador.proyectosResponsable)
+    @ManyToOne(() => DesarrolladorEntity, (desarrollador) => desarrollador.proyectosResponsable, {onDelete: 'CASCADE'})
     @JoinColumn({name: "id_responsable"})
     responsable: DesarrolladorEntity;
 
@@ -40,7 +40,7 @@ export class ProyectoEntity implements Proyecto {
     @Column()
     fechaActualizacion: Date;
 
-    @ManyToMany(() => DesarrolladorEntity, (desarrollador) => desarrollador.proyectos)
+    @ManyToMany(() => DesarrolladorEntity, (desarrollador) => desarrollador.proyectos, {cascade: true, onDelete: 'CASCADE'})
     @JoinTable({
         name: "desarrollador_x_proyecto",
         joinColumn: {

@@ -1,3 +1,3 @@
 import { Tarea } from '../model';
 
-export type CrearTareaDto = Pick<Tarea, 'titulo' | 'descripcion' | 'fechaInicio' | 'asignado' | 'estado'>;
+export type CrearTareaDto = Pick<Tarea, 'titulo' | 'descripcion' | 'fechaInicio' | 'fechaLimite' | 'asignado'>;

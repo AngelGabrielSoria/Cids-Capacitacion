@@ -25,7 +25,7 @@ const obtenerProyecto = async (req: Request, res: Response): Promise<Response> =
 
 const crearProyecto = async (req: Request, res: Response): Promise<Response> => {
     try {
-        const proyecto = await ProyectoService.crearProyecto(req.body, req.body.desarrollador);
+        const proyecto = await ProyectoService.crearProyecto(req.body, req.body.responsable);
         return res.status(201).json(proyecto);
     } catch (error) {
         return res.status(500).json({ message: "Ha ocurrido un error. Intente nuevamente." });
@@ -132,6 +132,16 @@ const tareasSinAsignar = async (req: Request, res: Response): Promise<Response> 
     }
 };
 
+const desarrolladoresSinAsignar = async (req: Request, res: Response): Promise<Response> => {
+
+        try {
+            const desarrolladores = await ProyectoService.desarrolladoresSinAsignar();
+            return res.json(desarrolladores);
+        } catch (error) {
+            return res.status(500).json({message: "Ha ocurrido un error. Intente nuevamente"})
+        }
+};
+
 export const ProyectoController = {
     obtenerProyectos,
     obtenerProyecto,
@@ -144,4 +154,5 @@ export const ProyectoController = {
     agregarResponsable,
     agregarDesarrollador,
     tareasSinAsignar,
+    desarrolladoresSinAsignar,
 };

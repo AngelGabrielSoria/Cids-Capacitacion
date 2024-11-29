@@ -45,6 +45,6 @@ export class ConsultarDesarrolladoresComponent {
         filter((res) => res),
         switchMap(() => this.desarrolladorService.eliminarDesarrollador(id))
       )
-      .subscribe();
+      .subscribe( () => this.desarrolladores$ = this.desarrolladorService.obtenerDesarrolladores());
   }
 }
