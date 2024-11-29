@@ -11,7 +11,7 @@ import { FormularioProyectoComponent } from '../../ui';
   standalone: true,
   imports: [FormularioProyectoComponent, AsyncPipe],
   templateUrl: './registrar-proyecto.component.html',
-  styleUrl: './registrar-proyecto.component.scss',
+  styleUrls: ['./registrar-proyecto.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegistrarproyectoComponent {
@@ -19,12 +19,12 @@ export class RegistrarproyectoComponent {
   private readonly notificacionService = inject(NotificacionService);
   private readonly router = inject(Router);
 
-  // proyecto$ = this.proyectoService.obtenerTareas();
+  tareas$ = this.proyectoService.obtenerTareasSinAsignar();
 
   onEnviarFormulario(payload: CrearProyectoDto): void {
     this.proyectoService.crearProyecto(payload).subscribe(() => {
       this.notificacionService.mostrarNotificacionExito('proyecto registrado correctamente.');
-      this.router.navigate(['/proyectoes']);
+      this.router.navigate(['/proyectos']);
     });
   }
 }

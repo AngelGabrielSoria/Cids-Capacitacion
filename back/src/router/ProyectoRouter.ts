@@ -97,4 +97,13 @@ ProyectoRouter.get("/:id/desarrolladores", async (req, res, next) => {
     }
 });
 
+// Tareas sin asignar
+ProyectoRouter.get("/tareas-sin-asignar", async (req, res, next) => {
+    try {
+        await ProyectoController.tareasSinAsignar(req, res);
+    } catch (error) {
+        next(error);
+    }
+});
+
 export default ProyectoRouter;

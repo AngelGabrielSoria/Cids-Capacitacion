@@ -32,4 +32,8 @@ export class ProyectoService {
   obtenerTareas(id: number): Observable<any> {
     return this.http.get<any>(`${this.PROYECTOS_URL}/{id}/tareas`);
   }
+
+  obtenerTareasSinAsignar(): Observable<any> {
+    return this.http.get<any>(`${this.PROYECTOS_URL}/tareas-sin-asignar`);
+  }
 }

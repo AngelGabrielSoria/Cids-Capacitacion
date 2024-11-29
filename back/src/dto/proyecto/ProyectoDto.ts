@@ -1,6 +1,7 @@
 import {IsDateString, IsNotEmpty, IsOptional, IsString, ValidateNested} from "class-validator";
 import {DesarrolladorDto} from "../desarrollador/DesarrolladorDto";
 import {CrearTareaDto} from "../tarea/CrearTareaDto";
+import {Type} from "class-transformer";
 
 export class ProyectoDto {
     @IsNotEmpty({message: "El nombre es obligatorio."})
@@ -13,10 +14,12 @@ export class ProyectoDto {
 
     @IsNotEmpty({message: "La fecha de inicio es obligatoria."})
     @IsDateString({}, {message: "La fecha de inicio debe ser un formato de fecha válido."})
+    @Type(() => Date)
     fechaInicio: Date;
 
     @IsNotEmpty({message: "La fecha de fin es obligatoria."})
     @IsDateString({}, {message: "La fecha de fin debe ser un formato de fecha válido."})
+    @Type(() => Date)
     fechaFin: Date;
 
     @IsOptional()

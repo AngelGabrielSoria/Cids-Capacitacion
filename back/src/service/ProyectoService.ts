@@ -82,6 +82,14 @@ const agregarDesarrollador = async (id: number, desarrollador: any) => {
     }
 }
 
+const tareasSinAsignar = async () => {
+    try {
+        return await ProyectoRepository.tareasSinAsignar();
+    } catch (error: any) {
+        throw error;
+    }
+}
+
 
 export const ProyectoService = {
     crearProyecto,
@@ -94,4 +102,5 @@ export const ProyectoService = {
     obtenerDesarrolladores,
     agregarResponsable,
     agregarDesarrollador,
+    tareasSinAsignar
 };

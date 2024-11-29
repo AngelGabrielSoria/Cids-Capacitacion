@@ -122,6 +122,16 @@ const agregarDesarrollador = async (req: Request, res: Response): Promise<Respon
         return res.status(500).json({message: "Ha ocurrido un error. Intente nuevamente"})
 }};
 
+const tareasSinAsignar = async (req: Request, res: Response): Promise<Response> => {
+
+    try {
+        const tareas = await ProyectoService.tareasSinAsignar();
+        return res.json(tareas);
+    } catch (error) {
+        return res.status(500).json({message: "Ha ocurrido un error. Intente nuevamente"})
+    }
+};
+
 export const ProyectoController = {
     obtenerProyectos,
     obtenerProyecto,
@@ -133,4 +143,5 @@ export const ProyectoController = {
     obtenerDesarrolladores,
     agregarResponsable,
     agregarDesarrollador,
+    tareasSinAsignar,
 };

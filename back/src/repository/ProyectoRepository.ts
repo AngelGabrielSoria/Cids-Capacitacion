@@ -129,6 +129,17 @@ const agregarDesarrollador = async (id: number, desarrollador: DesarrolladorEnti
     }
 }
 
+const tareasSinAsignar = async () => {
+    try {
+        const tareas = await dataSource.getRepository(TareaEntity).find({
+            relations: ["asignado"],
+        });
+        return tareas.filter(tarea => !tarea.asignado);
+    } catch (error: any) {
+        throw new DatabaseException(error.message);
+    }
+}
+
 export const ProyectoRepository = {
     crearProyecto,
     obtenerProyectos,
@@ -140,4 +151,5 @@ export const ProyectoRepository = {
     obtenerDesarrolladores,
     agregarResponsable,
     agregarDesarrollador,
+    tareasSinAsignar,
 };
