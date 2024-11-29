@@ -1,6 +1,6 @@
 import { Rol } from './rol.model';
 import { Proyecto } from '../../../proyectos/domain/model/proyecto.model';
-import { Tarea } from '../../../tareas/model/tarea.model';
+import { Tarea } from '../../../tareas/domain/model/tarea.model';
 
 export type Desarrollador = {
   id: number;

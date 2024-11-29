@@ -7,9 +7,7 @@ import { ROUTES } from "./routes";
 
 const app = express();
 
-app.use(cors(
-    {origin: 'localhost:3000'}
-));
+app.use(cors());
 
 app.use(json());
 

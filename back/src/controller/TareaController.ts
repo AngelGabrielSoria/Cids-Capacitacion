@@ -16,7 +16,7 @@ const crearTarea = async (req: Request, res: Response) => {
 const obtenerTareas = async (req: Request, res: Response) => {
     try {
         const response = await TareaService.obtenerTareas();
-        res.status(200).json(response);
+        res.json(response);
     } catch (error: any) {
         res.status(400).json({ message: error.message });
     }

@@ -24,6 +24,8 @@ export class ConsultarDesarrolladoresComponent {
 
   desarrolladores$ = this.desarrolladorService.obtenerDesarrolladores();
 
+  constructor() {}
+
   onRegistrar(): void {
     this.router.navigate(['/desarrolladores/registrar']);
   }

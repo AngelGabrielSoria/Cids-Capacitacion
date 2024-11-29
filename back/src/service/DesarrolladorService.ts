@@ -76,6 +76,8 @@ const asignarTarea = async (id: number, idTarea: number): Promise<Desarrollador>
     }
 }
 
+
+
 export const DesarrolladorService = {
     obtenerDesarrolladores,
     obtenerDesarrollador,

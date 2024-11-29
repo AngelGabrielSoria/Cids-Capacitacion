@@ -68,5 +68,4 @@ DesarrolladorRouter.patch("/:id/tareas", async (req: Request, res: Response, nex
     }
 });
 
-
 export default DesarrolladorRouter;

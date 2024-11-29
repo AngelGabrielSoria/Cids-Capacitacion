@@ -33,4 +33,12 @@ RolRouter.post("/", async (req: Request, res: Response, next: NextFunction) => {
     }
 });
 
+RolRouter.get("/:id/desarrolladores", async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        await RolController.devsPorRol(req, res);
+    } catch (error) {
+        next(error);
+    }
+});
+
 export default RolRouter;

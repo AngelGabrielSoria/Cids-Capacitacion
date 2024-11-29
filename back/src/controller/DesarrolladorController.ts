@@ -64,11 +64,13 @@ const asignarTarea = async (req: Request, res: Response): Promise<Response> => {
     }
 }
 
+
+
 export const DesarrolladorController = {
   obtenerDesarrolladores,
   obtenerDesarrollador,
   crearDesarrollador,
   actualizarDesarrollador,
   eliminarDesarrollador,
-  asignarTarea
+  asignarTarea,
 };

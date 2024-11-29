@@ -1,6 +1,7 @@
 import dataSource from "../db";
 import {TareaEntity} from "../entity";
 import {DatabaseException} from "../exception";
+import type {Desarrollador, Tarea} from "../model";
 
 
 const _tareaRepository = dataSource.getRepository(TareaEntity);
@@ -15,7 +16,7 @@ const crearTarea = async (tarea: any) => {
 
 const obtenerTarea = async (id: number) => {
     try {
-        return await _tareaRepository.findOne({where: {id}, relations: [ 'proyecto', 'asignado', 'estado']});
+        return await _tareaRepository.findOne({where: {id}, relations: ['proyecto', 'asignado', 'estado']});
     } catch (error: any) {
         throw new DatabaseException(error.message);
     }
@@ -38,9 +39,15 @@ const eliminarTarea = async (id: number) => {
     }
 };
 
-const obtenerTareas = async () => {
+const obtenerTareas = async (): Promise<Tarea[]> => {
     try {
-        return await _tareaRepository.find({where: {}, relations: ['asignado', 'estado']});
+        return await _tareaRepository.find({
+            relations: {
+                proyecto: true,
+                asignado: true,
+                estado: true
+            }
+        });
     } catch (error: any) {
         throw new DatabaseException(error.message);
     }

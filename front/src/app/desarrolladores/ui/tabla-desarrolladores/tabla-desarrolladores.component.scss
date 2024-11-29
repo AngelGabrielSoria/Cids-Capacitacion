@@ -8,6 +8,15 @@ th {
 }
 
 div {
-  width: 80%; /* Ajusta este valor según sea necesario */
-  margin: 0 auto; /* Centra la tabla */
+  width: 100%;
+  margin: 0 auto;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+table {
+  width: 100%;
 }

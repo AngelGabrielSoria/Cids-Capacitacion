@@ -1,0 +1,18 @@
+td,
+th {
+  text-align: center;
+}
+
+::ng-deep .mat-sort-header .mat-sort-header-container {
+  justify-content: center;
+}
+
+div {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}

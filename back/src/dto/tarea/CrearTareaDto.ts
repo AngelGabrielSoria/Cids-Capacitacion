@@ -2,6 +2,7 @@ import {DesarrolladorDto} from "../desarrollador/DesarrolladorDto";
 import {ProyectoDto} from "../proyecto/ProyectoDto";
 import {CrearEstadoDto} from "../estado/CrearEstadoDto";
 import {IsDate, IsInt, IsNotEmpty, IsString, ValidateNested} from "class-validator";
+import {Type} from "class-transformer";
 
 
 export class CrearTareaDto {
@@ -28,6 +29,7 @@ export class CrearTareaDto {
 
     @IsNotEmpty({message: "La fecha límite es obligatoria."})
     @IsDate({message: "La fecha límite debe ser un formato de fecha válido."})
+    @Type(() => Date)
     fechaLimite: Date;
 
 }

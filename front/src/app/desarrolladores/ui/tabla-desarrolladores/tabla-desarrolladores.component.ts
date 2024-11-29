@@ -16,13 +16,15 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTooltip } from '@angular/material/tooltip';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { Desarrollador } from '../../domain';
 
 @Component({
   selector: 'app-tabla-desarrolladores',
   standalone: true,
-  imports: [MatTableModule, MatIcon, MatIconButton, MatTooltip, DatePipe, MatPaginatorModule, MatSortModule],
+  imports: [MatTableModule, MatIcon, MatIconButton, MatTooltip, DatePipe, MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule],
   templateUrl: './tabla-desarrolladores.component.html',
   styleUrl: './tabla-desarrolladores.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -37,7 +39,7 @@ export class TablaDesarrolladoresComponent implements OnChanges, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns = ['nombre', 'correo', 'rol', 'fechaContratacion', 'acciones'];
+  displayedColumns = ['id', 'nombre', 'correo', 'rol', 'fechaContratacion', 'acciones'];
   dataSource!: MatTableDataSource<Desarrollador>;
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -49,5 +51,11 @@ export class TablaDesarrolladoresComponent implements OnChanges, AfterViewInit {
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

@@ -22,6 +22,11 @@ export const routes: Routes = [
         path: 'proyectos',
         loadChildren: () =>
           import('../../proyectos/feature/shell-proyectos/shell-proyectos.routes').then((m) => m.routes),
+      },
+      {
+        path: 'tareas',
+        loadChildren: () =>
+          import('../../tareas/feature/shell-tareas/shell-tareas.routes').then((m) => m.routes),
       }
     ],
   },

@@ -10,7 +10,7 @@ const crearTarea = async (tarea: Tarea) => {
     }
 }
 
-const obtenerTareas = async () => {
+const obtenerTareas = async (): Promise<Tarea[]> => {
     try {
         return await TareaRepository.obtenerTareas();
     } catch (error: any) {
